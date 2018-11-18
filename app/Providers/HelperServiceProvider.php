@@ -4,13 +4,15 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
-class AppServiceProvider extends ServiceProvider
+class HelperServiceProvider extends ServiceProvider
 {
     /**
      * Bootstrap any application services.
      *
      * @return void
      */
+
+
     public function boot()
     {
         //
@@ -23,9 +25,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind(
-			'App\Repositories\Contracts\RoleRepositoryInterface',
-			'App\Repositories\Eloquents\RoleRepository'
-		);
+        //require file bootstrap o helpers vao he thong
+        require_once app_path() . '/Helpers/bootstrap.php';
     }
 }
