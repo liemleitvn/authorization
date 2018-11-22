@@ -43,7 +43,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form method="post" action="{{ route('roles.insert') }}">
+                <form method="post" action="{{ route('admin.roles.insert') }}">
                     @csrf
                     <div class="modal-body mx-3">
                         <div class="md-form mb-5">
@@ -89,11 +89,14 @@
                             <td>{{ $role['role'] }}</td>
                             <td>{{ $role['description'] }}</td>
                             <td>
+                                <button class="btn btn-primary">
+                                    <a style="text-decoration: none; color: #1b1e21" href="{{ url('roles/set-role-user/'.$role['id']) }}">Set Role User</a>
+                                </button>
                                 <button class="btn btn-warning">
-                                    <a style="text-decoration: none" href="{{ url('roles/update/'.$role['id']) }}">Edit</a>
+                                    <a style="text-decoration: none" href="{{ url('roles/edit/'.$role['id']) }}">Edit</a>
                                 </button>
                                 <button class="btn btn-danger">
-                                    <a style="text-decoration: none" href="{{ url('post/delete/'.$role['id']) }}">Delete</a>
+                                    <a style="text-decoration: none" href="{{ url('roles/delete/'.$role['id']) }}">Delete</a>
                                 </button>
                             </td>
                         </tr>

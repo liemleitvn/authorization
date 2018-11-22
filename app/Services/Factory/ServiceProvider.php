@@ -18,8 +18,9 @@ class ServiceProvider
 
 	public static function register() {
 		return [
-			'insert_role'=> \App\Services\InsertingRoleService::class,
-			'get_role'=>\App\Services\GettingRoleService::class
+			'insert_role'=> \App\Services\Admin\InsertingRoleService::class,
+			'get_role'=>\App\Services\Admin\GettingRoleService::class,
+			'login_admin'=>\App\Services\Admin\LoginAdminService::class
 		];
 	}
 }

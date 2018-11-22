@@ -3,15 +3,15 @@
  * Created by PhpStorm.
  * User: liemleitvn
  * Date: 17/11/2018
- * Time: 17:34
+ * Time: 11:33
  */
 
-namespace App\Services;
+namespace App\Admin\Services;
 
 use App\Repositories\Contracts\RoleRepositoryInterface;
 
 
-class GettingRoleService
+class InsertingRoleService
 {
 	private $roleRepo;
 
@@ -20,7 +20,12 @@ class GettingRoleService
 		$this->roleRepo = $roleRepo;
 	}
 
-	public function execute($keyword ='', $column ='', $offset = 0, $limit = 10) {
-		return $this->roleRepo->get($keyword, $column, $offset, $limit);
+	public function execute($request) {
+
+		$data = $request->only('role', 'description');
+
+		$result = $this->roleRepo->create($data);
+
+		return $result;
 	}
 }

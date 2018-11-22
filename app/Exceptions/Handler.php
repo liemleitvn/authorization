@@ -47,11 +47,27 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
-        return parent::render($request, $exception);
+		if($this->isHttpException($exception)) {
+			switch ($exception->getStatusCode()) {
+				case 401:
+					return response()->view('errors.401', ['message' => $exception->getMessage()]);
+					break;
+				case 403:
+					return response()->view('errors.404',['message' => $exception->getMessage()]);
+					break;
+				case 404:
+					response()->view('errors.403',['message' => $exception->getMessage()]);
+					break;
+			}
+		}
+
+
+		return parent::render($request, $exception);
     }
 
 	protected function unauthenticated($request, AuthenticationException $exception)
 	{
+		$url = base64_encode(url()->current());
 		if ($request->expectsJson()) {
 			return response()->json(['error' => 'Unauthenticated.'], 401);
 		}
@@ -64,6 +80,6 @@ class Handler extends ExceptionHandler
 				$login = 'login';
 				break;
 		}
-		return redirect()->guest(route($login));
+		return redirect()->guest(route($login).'?url='.$url);
 	}
 }

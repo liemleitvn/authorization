@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use App\Repositories\Contracts\RoleRepositoryInterface;
 
 class RegisterController extends Controller
 {
@@ -35,9 +36,12 @@ class RegisterController extends Controller
      *
      * @return void
      */
-    public function __construct()
+    private $roleRepo;
+
+    public function __construct(RoleRepositoryInterface $roleRepo)
     {
         $this->middleware('guest');
+        $this->roleRepo = $roleRepo;
     }
 
     /**
@@ -63,10 +67,12 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+    	$role_user = $this->roleRepo->findBy('role', config('constant-auth.user'));
+    	return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+			'role_id'=>$role_user->id
         ]);
     }
 }
