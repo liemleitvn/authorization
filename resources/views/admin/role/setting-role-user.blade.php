@@ -35,7 +35,11 @@
                         </tr>
                         <tr>
                             <th>Last Login:</th>
-                            <td>???</td>
+                            <td>{{ $user->last_login_at }}</td>
+                        </tr>
+                        <tr>
+                            <th>Last Login Ip:</th>
+                            <td>{{ $user->last_login_ip }}</td>
                         </tr>
                         <tr>
                             <th>Role:</th>
@@ -54,7 +58,16 @@
                         </tr>
                     </table>
                     <br>
+                    <button type="button" class="btn btn-default action-back">
+                        <a
+                                style="text-decoration: none"
+                                href="{{url('/admin/user')}}"
+                        >
+                            Back
+                        </a>
+                    </button>
                     <button type="submit" class="btn btn-primary">Save</button>
+
                 </form>
             @endif
         </div>

@@ -47,13 +47,11 @@
                     @csrf
                     <div class="modal-body mx-3">
                         <div class="md-form mb-5">
-                            <i class="fa fa-envelope prefix grey-text"></i>
                             <label data-error="wrong" data-success="right" for="role">Role name</label>
                             <input type="text" id="role" name="role" class="form-control validate" placeholder="Entry role" value="{{ old('role') }}">
                         </div>
 
                         <div class="md-form mb-4">
-                            <i class="fa fa-lock prefix grey-text"></i>
                             <label data-error="wrong" data-success="right" for="role-description">Description</label>
                             <input type="text" class="form-control validate" id="description" placeholder="Describe role" name="description" value="{{ old('role') }}">
                         </div>
@@ -89,14 +87,11 @@
                             <td>{{ $role['role'] }}</td>
                             <td>{{ $role['description'] }}</td>
                             <td>
-                                <button class="btn btn-primary">
-                                    <a style="text-decoration: none; color: #1b1e21" href="{{ url('roles/set-role-user/'.$role['id']) }}">Set Role User</a>
-                                </button>
                                 <button class="btn btn-warning">
-                                    <a style="text-decoration: none" href="{{ url('roles/edit/'.$role['id']) }}">Edit</a>
+                                    <a style="text-decoration: none" href="{{ url('admin/roles/edit/'.$role['id']) }}">Edit</a>
                                 </button>
                                 <button class="btn btn-danger">
-                                    <a style="text-decoration: none" href="{{ url('roles/delete/'.$role['id']) }}">Delete</a>
+                                    <a style="text-decoration: none" href="{{ url('admin/roles/delete/'.$role['id']) }}">Delete</a>
                                 </button>
                             </td>
                         </tr>

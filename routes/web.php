@@ -27,13 +27,14 @@ Route::group(['prefix'=>'admin', 'as'=>'admin.', 'namespace'=>'Admin', 'middlewa
 		Route::get('/', ['uses'=>'UserManagerController@index', 'as'=>'show']);
 		Route::get('/edit/{id}', ['uses'=>'UserManagerController@edit', 'as'=>'edit']);
 		Route::post('/edit/{id}', ['uses'=>'UserManagerController@update', 'as'=>'update']);
-		Route::get('/delete/{id}', ['uses'=>'UserManagerController@edit', 'as'=>'delete']);
+		Route::get('/delete/{id}', ['uses'=>'UserManagerController@delete', 'as'=>'delete']);
 	});
 	Route::group(['prefix'=>'roles', 'as'=>'roles.'], function () {
-		Route::get('/', ['uses'=>'RoleController@index', 'as'=>'show']);
-		Route::post('/insert', ['uses'=>'RoleController@store', 'as'=>'insert']);
-		Route::get('/set-role-user/{id}', ['uses'=>'RoleController@formRoleUser', 'as'=>'show-role-user']);
-		Route::post('/set-role-user/{id}', ['uses'=>'RoleController@setRoleUser', 'as'=>'set-role-user']);
+		Route::get('/', ['uses'=>'RoleManagerController@index', 'as'=>'show']);
+		Route::post('/insert', ['uses'=>'RoleManagerController@store', 'as'=>'insert']);
+		Route::get('delete/{id}', ['uses'=>'RoleManagerController@delete', 'as'=>'delete']);
+		Route::get('edit/{id}', ['uses'=>'RoleManagerController@edit', 'as'=>'edit']);
+		Route::post('/set-role-user/{id}', ['uses'=>'RoleManagerController@setPermission', 'as'=>'update']);
 	});
 
 //	Route::group(['prefix'=>'manager-role', 'as'=>'manager-role.'], function (){

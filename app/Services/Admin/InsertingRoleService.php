@@ -6,7 +6,7 @@
  * Time: 11:33
  */
 
-namespace App\Admin\Services;
+namespace App\Services\Admin;
 
 use App\Repositories\Contracts\RoleRepositoryInterface;
 
