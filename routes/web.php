@@ -42,3 +42,9 @@ Route::group(['prefix'=>'admin', 'as'=>'admin.', 'namespace'=>'Admin', 'middlewa
 //		Route::post('/', ['uses'=>'ManagerRoleController@updateRole', 'as'=>'update-role']);
 //	});
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('test', ['uses'=>'TestController@store']);
